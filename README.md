@@ -6,11 +6,13 @@ The file `preload.R` contains some useful R snippets that [I](https://max.pm) ha
 source("preload.R")
 ```
 
+These snippets default to [HC3 standard errors](https://doi.org/10.1016/0304-4076%2885%2990158-7) if computing “clustered” standard errors, and to [HC5 standard errors](https://doi.org/10.1080/03610920601126589) if not. (Note: Stata defaults to HC1 standard errors, which are [not recommended](https://datacolada.org/99).)
+
 ## Dependencies
 
 ### R
 
-If you use all the functions in `preload.R`, you need these R packages:
+To use all the functions in `preload.R`, you need these R packages:
 
 1. texreg, preferably as found [here](https://github.com/mrpg/texreg_fork)¹
 2. lmtest
@@ -33,6 +35,14 @@ When using `tt()`, include these LaTeX packages:
 ## Example
 
 See `example.R`.
+
+This file also shows a feature of these snippets that is frequently missed: `save_to` saves your LaTeX regression table to a file. This means that within your paper, you can do
+
+```tex
+\input{output/table1.tex}
+```
+
+No more copy and pasting! Crucially, the file name is determined automatically from your list of models.
 
 ## License
 
