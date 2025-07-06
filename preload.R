@@ -1,4 +1,4 @@
-# https://github.com/mrpg/r_snippets @ 2024-09-13
+# https://github.com/mrpg/r_snippets @ 2025-07-06
 # CC0 1.0 Universal (no rights reserved)
 
 tt <- function (models, no_resize = F, placement = "", siunitx = T, ...) {
@@ -52,11 +52,13 @@ save_to <- function(extension, ...) {
     }
 }
 
-robustly <- function (models, column, type = "HC3") {
+robustly <- function (models, column, type = "HC5") {
     # call this with a list of models
     # column = 2 gives standard errors
     # column = 4 gives p-values
     # this function is useful in conjunction with tt's override.se, override.pvalues arguments
+
+    stopifnot(identical(class(models), "list"))
 
     library(lmtest)
     library(sandwich)
@@ -79,6 +81,8 @@ clustered <- function (models, column, ...) {
     # specify clustering formula in ..., for example: ~ country + year
     # this function is useful in conjunction with tt's override.se, override.pvalues arguments
     # note: type = "HC3" (see below) is computationally expensive
+
+    stopifnot(identical(class(models), "list"))
 
     library(lmtest)
     library(sandwich)
